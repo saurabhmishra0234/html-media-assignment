@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Move Image with Arrow Keys</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden; /* Prevents scrollbars */
+        }
+        #container {
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+        }
+        #movableImage {
+            position: absolute;
+            width: 100px; /* Adjust size as needed */
+            height: 100px; /* Adjust size as needed */
+            transition: transform 0.1s; /* Smooth movement */
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <img id="movableImage" src="your-image-url-here.png" alt="Movable Image">
+    </div>
+
+    <script>
+        // Get the image element
+        const image = document.getElementById('movableImage');
+        // Initial position
+        let posX = 0;
+        let posY = 0;
+
+        // Function to move the image
+        const moveImage = (direction) => {
+            const step = 10; // Number of pixels to move per key press
+
+            switch (direction) {
+                case 'up':
+                    posY -= step;
+                    break;
+                case 'down':
+                    posY += step;
+                    break;
+                case 'left':
+                    posX -= step;
+                    break;
+                case 'right':
+                    posX += step;
+                    break;
+            }
+
+            // Update the image position
+            image.style.transform = `translate(${posX}px, ${posY}px)`;
+        };
+
+        // Event listener for keydown events
+        window.addEventListener('keydown', (event) => {
+            switch (event.key) {
+                case 'ArrowUp':
+                    moveImage('up');
+                    break;
+                case 'ArrowDown':
+                    moveImage('down');
+                    break;
+                case 'ArrowLeft':
+                    moveImage('left');
+                    break;
+                case 'ArrowRight':
+                    moveImage('right');
+                    break;
+            }
+        });
+    </script>
+</body>
+</html>

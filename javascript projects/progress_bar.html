@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scroll Progress Bar</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+        .progress-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background-color: #ddd;
+            z-index: 1000;
+        }
+        .progress-bar {
+            height: 100%;
+            background-color: #4caf50;
+            width: 0%; /* Start with 0% width */
+            transition: width 0.25s ease; /* Smooth transition */
+        }
+        .content {
+            height: 2000px; /* Just for demonstration, to create scrollable content */
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="progress-container">
+        <div class="progress-bar" id="progressBar"></div>
+    </div>
+    <div class="content">
+        <h1>Scroll Down to See the Progress Bar in Action</h1>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p>
+        <p>Curabitur sit amet mauris sit amet est vehicula tempor. Vestibulum sollicitudin, nulla eu pretium viverra, lorem sem dictum felis, ut lacinia risus magna vel velit.</p>
+        <p>Vestibulum dapibus, nunc at laoreet tempus, ipsum sapien tristique velit, sed cursus urna nunc id eros. Suspendisse potenti. Aliquam erat volutpat.</p>
+        <p>Praesent nec mi eu elit tempus facilisis a id elit. Curabitur aliquet, libero eget ullamcorper ultricies, nulla ligula facilisis sapien, a tincidunt ex nunc at dui.</p>
+        <p>Aliquam sit amet tincidunt orci. Cras non varius lacus. Proin ut orci at orci hendrerit tempus. Nullam convallis metus sed pharetra vehicula.</p>
+    </div>
+    
+    <script>
+        // Function to update the progress bar width
+        const updateProgressBar = () => {
+            const scrollTop = window.scrollY;
+            const docHeight = document.documentElement.scrollHeight;
+            const winHeight = window.innerHeight;
+            const scrollPercent = (scrollTop / (docHeight - winHeight)) * 100;
+
+            const progressBar = document.getElementById('progressBar');
+            progressBar.style.width = `${scrollPercent}%`;
+        };
+
+        // Add scroll event listener
+        window.addEventListener('scroll', updateProgressBar);
+
+        // Initialize the progress bar on page load
+        updateProgressBar();
+    </script>
+</body>
+</html>

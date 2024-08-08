@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learning List</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 20px;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            padding: 10px;
+            border: 1px solid #ddd;
+            margin: 5px 0;
+            border-radius: 4px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        .message {
+            font-size: 16px;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>What You'll Learn</h1>
+    <ul id="learningList"></ul>
+    <button id="addItemButton">Add Next Item</button>
+    <p id="message" class="message"></p>
+
+    <script>
+        // Array of list items to be added
+        const items = [
+            'Understanding JavaScript fundamentals',
+            'Learning DOM manipulation',
+            'Mastering event handling',
+            'Implementing AJAX requests',
+            'Building interactive web applications',
+            'Debugging and testing JavaScript code'
+        ];
+
+        // Get references to DOM elements
+        const learningList = document.getElementById('learningList');
+        const addItemButton = document.getElementById('addItemButton');
+        const messageParagraph = document.getElementById('message');
+
+        // Index to keep track of the current item
+        let currentIndex = 0;
+
+        // Function to add the next item to the list
+        const addNextItem = () => {
+            // Check if there are remaining items
+            if (currentIndex < items.length) {
+                // Create a new list item
+                const listItem = document.createElement('li');
+                listItem.textContent = items[currentIndex];
+                
+                // Add the list item to the list
+                learningList.appendChild(listItem);
+                
+                // Update the index
+                currentIndex++;
+                
+                // Clear any previous message
+                messageParagraph.textContent = '';
+            } else {
+                // Display a message if no items are left
+                messageParagraph.textContent = 'All items have been added!';
+            }
+        };
+
+        // Attach the click event listener to the button
+        addItemButton.addEventListener('click', addNextItem);
+    </script>
+</body>
+</html>

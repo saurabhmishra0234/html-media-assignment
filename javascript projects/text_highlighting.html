@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Highlight Long Words</title>
+    <style>
+        .highlight {
+            background-color: yellow;
+        }
+    </style>
+</head>
+<body>
+    <p id="textParagraph">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque aliquam sollicitudin
+        dolor sit amet facilisis. Praesent venenatis est a lorem varius, eget aliquet elit
+        lobortis.
+    </p>
+    <button id="highlightButton">Highlight Long Words</button>
+
+    <script>
+        // Function to highlight words greater than 8 characters
+        const highlightLongWords = () => {
+            // Get the paragraph element
+            const paragraph = document.getElementById('textParagraph');
+            // Get the text content of the paragraph
+            const text = paragraph.textContent;
+            // Split the text into words
+            const words = text.split(' ');
+            // Create a new array to hold the modified words
+            const modifiedWords = words.map(word => {
+                // Check if the word length is greater than 8
+                if (word.length > 8) {
+                    // Return the word wrapped in a span with a highlight class
+                    return `<span class="highlight">${word}</span>`;
+                }
+                // Return the word unchanged
+                return word;
+            });
+            // Join the modified words back into a single string with spaces
+            paragraph.innerHTML = modifiedWords.join(' ');
+        };
+
+        // Get reference to the button
+        const highlightButton = document.getElementById('highlightButton');
+        // Attach the click event listener to the button
+        highlightButton.addEventListener('click', highlightLongWords);
+    </script>
+</body>
+</html>
