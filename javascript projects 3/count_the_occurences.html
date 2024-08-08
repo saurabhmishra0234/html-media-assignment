@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Word Count Generator</title>
+</head>
+<body>
+    <h1>Word Count Generator</h1>
+    <textarea id="textInput" rows="10" cols="50" placeholder="Enter your text here..."></textarea><br>
+    <button id="countButton">Count Words</button>
+    <pre id="output"></pre>
+
+    <script>
+        // Function to count word occurrences
+        const countWords = (text) => {
+            // Convert the text to lowercase and split into words
+            const words = text.toLowerCase().split(/\s+/);
+
+            // Create a Map to store word counts
+            const wordCountMap = new Map();
+
+            // Count occurrences of each word
+            words.forEach(word => {
+                if (word) { // Ignore empty strings
+                    if (wordCountMap.has(word)) {
+                        wordCountMap.set(word, wordCountMap.get(word) + 1);
+                    } else {
+                        wordCountMap.set(word, 1);
+                    }
+                }
+            });
+
+            return wordCountMap;
+        };
+
+        // Function to display the word counts
+        const displayWordCounts = () => {
+            // Get the input text
+            const text = document.getElementById('textInput').value;
+            
+            // Get the word counts
+            const wordCounts = countWords(text);
+
+            // Prepare the output
+            let output = '';
+            wordCounts.forEach((count, word) => {
+                output += `${word}: ${count}\n`;
+            });
+
+            // Display the result
+            document.getElementById('output').textContent = output;
+        };
+
+        // Add event listener to the button
+        document.getElementById('countButton').addEventListener('click', displayWordCounts);
+    </script>
+</body>
+</html>

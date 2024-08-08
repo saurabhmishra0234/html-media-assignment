@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Remove Duplicates</title>
+</head>
+<body>
+    <h1>Remove Duplicates from Array</h1>
+    <input type="text" id="inputArray" placeholder="Enter numbers separated by commas">
+    <button id="processButton">Remove Duplicates</button>
+    <p id="output"></p>
+
+    <script>
+        // Function to remove duplicates from an array
+        const removeDuplicates = (arr) => {
+            const uniqueSet = new Set(arr);
+            return [...uniqueSet];
+        };
+
+        // Function to process the input and display the result
+        const processInput = () => {
+            // Get the input value
+            const input = document.getElementById('inputArray').value;
+            
+            // Convert the input to an array of numbers
+            const numbers = input.split(',').map(num => parseFloat(num.trim())).filter(num => !isNaN(num));
+
+            // Remove duplicates
+            const uniqueNumbers = removeDuplicates(numbers);
+
+            // Display the result
+            document.getElementById('output').textContent = `Original Array: ${numbers}\nArray with Duplicates Removed: ${uniqueNumbers}`;
+        };
+
+        // Add event listener to the button
+        document.getElementById('processButton').addEventListener('click', processInput);
+    </script>
+</body>
+</html>
