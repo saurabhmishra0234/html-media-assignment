@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LinkedIn URL Validator</title>
+</head>
+<body>
+    <h1>LinkedIn Profile URL Validator</h1>
+    <input type="text" id="urlInput" placeholder="Enter LinkedIn profile URL">
+    <button id="validateButton">Validate URL</button>
+    <p id="message"></p>
+
+    <script>
+        // Regex pattern to match valid LinkedIn profile URLs
+        const linkedinPattern = /^https:\/\/www\.linkedin\.com\/in\/[a-zA-Z0-9_-]{5,30}[a-zA-Z0-9]$/;
+
+        // Function to validate LinkedIn URL
+        const validateURL = () => {
+            // Get the input value
+            const url = document.getElementById('urlInput').value.trim();
+            
+            // Check if the URL matches the regex pattern
+            const isValid = linkedinPattern.test(url);
+            
+            // Display the result
+            const messageElement = document.getElementById('message');
+            if (isValid) {
+                messageElement.textContent = 'The LinkedIn profile URL is valid.';
+                messageElement.style.color = 'green';
+            } else {
+                messageElement.textContent = 'The LinkedIn profile URL is invalid. Ensure it starts with "https://www.linkedin.com/in/", and contains only letters, digits, underscores, or hyphens, with a length between 5 and 30 characters for the profile ID.';
+                messageElement.style.color = 'red';
+            }
+        };
+
+        // Add event listener to the button
+        document.getElementById('validateButton').addEventListener('click', validateURL);
+    </script>
+</body>
+</html>

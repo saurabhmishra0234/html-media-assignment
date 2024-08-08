@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>URL Validator</title>
+</head>
+<body>
+    <h1>URL Validator</h1>
+    <input type="text" id="urlInput" placeholder="Enter a URL">
+    <button id="validateButton">Validate URL</button>
+    <p id="message"></p>
+
+    <script>
+        // Regex pattern to match valid URLs
+        const urlPattern = /^(https?:\/\/)[a-zA-Z0-9\-._~:\/?#\[\]@!$&'()*+,;=]+\.[a-zA-Z]{2,}$/;
+
+        // Function to validate URL
+        const validateURL = () => {
+            // Get the input value
+            const url = document.getElementById('urlInput').value;
+            
+            // Check if the URL matches the regex pattern
+            const isValid = urlPattern.test(url);
+            
+            // Display the result
+            const messageElement = document.getElementById('message');
+            if (isValid) {
+                messageElement.textContent = 'The URL is valid.';
+                messageElement.style.color = 'green';
+            } else {
+                messageElement.textContent = 'The URL is invalid.';
+                messageElement.style.color = 'red';
+            }
+        };
+
+        // Add event listener to the button
+        document.getElementById('validateButton').addEventListener('click', validateURL);
+    </script>
+</body>
+</html>
