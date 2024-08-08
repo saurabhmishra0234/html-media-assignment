@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Convert Prices</title>
+</head>
+<body>
+    <h1>Price Conversion</h1>
+    <pre id="output"></pre>
+
+    <script>
+        // Original prices in USD
+        const pricesInUSD = {
+            "Apple": 2,
+            "Banana": 1,
+            "Orange": 1.5,
+            "Mango": 3
+        };
+
+        // Exchange rate
+        const exchangeRate = 80; // 1 USD = 80 INR
+
+        // Convert prices from USD to INR
+        const convertPricesToINR = (prices, rate) => {
+            // Convert object to array of [key, value] pairs
+            return Object.fromEntries(
+                Object.entries(prices).map(([item, price]) => [
+                    item, // item name
+                    price * rate // converted price
+                ])
+            );
+        };
+
+        // Convert prices and store in a new object
+        const pricesInINR = convertPricesToINR(pricesInUSD, exchangeRate);
+
+        // Output the result
+        document.getElementById('output').textContent = JSON.stringify(pricesInINR, null, 2);
+    </script>
+</body>
+</html>
